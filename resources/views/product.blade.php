@@ -28,7 +28,7 @@
                     </div>
                 </div>
             </div>
-            <div id="main" class="col">
+            <div id="main" class="col-10">
                 <nav id="head-panel" class="navbar bg-body-tertiary">
                     Продукты
                     @auth
@@ -47,31 +47,33 @@
                     </ul>
                 </div>
                 @endif
-                <div id="data">
-                <table>
-                    <tr>
-                        <th>АРТИКУЛ</th>
-                        <th>НАЗВАНИЕ</th>
-                        <th>СТАТУС</th>
-                        <th>АТРИБУТЫ</th>
-                    </tr>
-                    @foreach($products as $product)
-                    <tr>
-                        <td>{{ $product->article }}</td>
-                        <td>{{ $product->name }}</td>
-                        <td>{{ $product->status }}</td>
-                        <td>
+                <div class="row">
+                <div id="data" class="col-11">
+                    <table class="table table-striped">
+                        <tr>
+                            <th>АРТИКУЛ</th>
+                            <th>НАЗВАНИЕ</th>
+                            <th>СТАТУС</th>
+                            <th>АТРИБУТЫ</th>
+                        </tr>
+                        @foreach($products as $product)
+                        <tr>
+                            <td>{{ $product->article }}</td>
+                            <td>{{ $product->name }}</td>
+                            <td>{{ $product->status }}</td>
+                            <td>
                             @foreach($product->data as $attr)
                             {{ $attr }}<br>
                             @endforeach
-                        </td>
-                    </tr>
-                    @endforeach
-                </table>
-            </div>
-            <div id="control">
-                <button>Добавить</button>
-            </div>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </table>
+                </div>
+                <div id="control" class="col-1">
+                    <button type="button" class="btn btn-primary">Добавить</button>
+                </div>
+                </div>
             <form method="post" action="{{ route('addProduct') }}">
                 @csrf
                 <h3>Добавить продукт</h3>
