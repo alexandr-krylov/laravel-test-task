@@ -97,21 +97,8 @@
                                     </div>
                                     <h4>Атрибуты</h4>
                                     <div id="attributes">
-                                        <div class="row">
-                                            <div class="col">
-                                                <label class="form-label">Название<input type="text" name="title[]" class="form-control">
-                                                </label>
-                                            </div>
-                                            <div class="col">
-                                                <label class="form-label">Значение<input type="text" name="value[]" class="form-control">
-                                                </label>
-                                            </div>
-                                            <div class="col position-relative">
-                                                <button type="button" class="btn position-absolute bottom-0"><i class="bi bi-trash"></i></button>
-                                            </div>
-                                        </div>
                                     </div>
-                                    <button type="button" id="addAttribute" class="btn">+Добавить атрибут</button>
+                                    <button type="button" id="addAttribute" class="btn btn-link">+Добавить атрибут</button>
                                 </form>
                             </div>
                             <div class="modal-footer">
@@ -126,5 +113,6 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
+        <script src="http://localhost:5173/resources/js/product.js"></script>
     </body>
 </html>
