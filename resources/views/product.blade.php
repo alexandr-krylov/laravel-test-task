@@ -79,7 +79,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form method="post" action="{{ route('addProduct') }}">
+                                <form method="post" action="{{ route('addProduct') }}" id="newProduct">
                                     @csrf
                                     <div class="mb-3">
                                         <lable class="form-label">Артикул<input type="text" name="article" class="form-control"></lable>
@@ -103,7 +103,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
+                                <button type="button" class="btn btn-primary" id="newProductSubmit">Save changes</button>
                             </div>
                         </div>
                     </div>

@@ -33,3 +33,10 @@
         attribtes.append(newAttribute);
     });
 }
+{
+    let newProductForm = document.getElementById("newProduct");
+    let newProductSubmitButton = document.getElementById("newProductSubmit");
+    newProductSubmitButton.addEventListener("click", function(){
+        newProductForm.submit();
+    });
+}
