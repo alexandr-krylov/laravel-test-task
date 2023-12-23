@@ -51,7 +51,7 @@
                                 <th>АТРИБУТЫ</th>
                             </tr>
                             @foreach($products as $product)
-                            <tr>
+                            <tr role="button" data-id="{{ $product->id }}">
                                 <td>{{ $product->article }}</td>
                                 <td>{{ $product->name }}</td>
                                 <td>{{ $product->status }}</td>

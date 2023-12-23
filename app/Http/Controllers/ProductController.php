@@ -30,16 +30,19 @@ class ProductController extends Controller
         $product->article = $request->input('article');
         $product->name = $request->input('name');
         $product->status = $request->input('status');
-        $product->data =
-            json_encode(
-                array_combine(
-                    $request->input('title') ?? [],
-                    $request->input('value') ?? []
-                )
-            );
-        //        dd(json_encode(""));
+        $product->data = json_encode(
+            array_combine(
+                $request->input('title') ?? [],
+                $request->input('value') ?? []
+            )
+        );
         $product->save();
 
         return redirect()->route('product');
+    }
+
+    public function show($id)
+    {
+        return response()->json(Product::find($id));
     }
 }

@@ -36,7 +36,16 @@
 {
     let newProductForm = document.getElementById("newProduct");
     let newProductSubmitButton = document.getElementById("newProductSubmit");
-    newProductSubmitButton.addEventListener("click", function(){
+    newProductSubmitButton.addEventListener("click", function () {
         newProductForm.submit();
     });
+}
+{
+    let productRows = document.querySelectorAll("#data [data-id]");
+    for(let row of productRows) {
+        row.addEventListener("click", function(){
+            
+        });
+    }
+    console.log(productRows);
 }
