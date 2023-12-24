@@ -41,10 +41,27 @@
     });
 }
 {
+
     let productRows = document.querySelectorAll("#data [data-id]");
-    for(let row of productRows) {
-        row.addEventListener("click", function(){
-            
+    let showProductTitle = document.getElementById("showProductModalLabel");
+    let showProductModal = document.getElementById("showProductModal");
+    let showProductArticle = document.getElementById("showArticle");
+    console.log(showProductModal);
+    for (let row of productRows) {
+        row.addEventListener("click", function () {
+            let id = this.getAttribute("data-id")
+            console.log(id);
+            fetch("product/" + id)
+                    .then(response => response.json())
+                    .then(result => {
+                        showProductTitle.appendChild(document.createTextNode(result.name));
+//                        console.log(result.id, result.article, showProductTitle);
+                        showProductArticle.appendChild(document.createTextNode(result.article));
+//                        showProductModal.removeAttribute("aria-hidden");
+//                        showProductModal.setAttribute("aria-modal", true);
+//                        showProductModal.setAttribute("role", "dialog");
+//                        showProductModal.setAttribute("style", "display: block");
+                    });
         });
     }
     console.log(productRows);

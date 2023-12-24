@@ -51,7 +51,7 @@
                                 <th>АТРИБУТЫ</th>
                             </tr>
                             @foreach($products as $product)
-                            <tr role="button" data-id="{{ $product->id }}">
+                            <tr role="button" data-id="{{ $product->id }}" data-bs-toggle="modal" data-bs-target="#showProductModal">
                                 <td>{{ $product->article }}</td>
                                 <td>{{ $product->name }}</td>
                                 <td>{{ $product->status }}</td>
@@ -100,6 +100,41 @@
                                     </div>
                                     <button type="button" id="addAttribute" class="btn btn-link">+Добавить атрибут</button>
                                 </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" id="newProductSubmit">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="showProductModal" tabindex="-1"
+                     aria-labelledby="showProductModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title fs-5" id="showProductModalLabel"></h3>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                    <div class="mb-3">
+                                        <lable class="form-label">Артикул<div id="showArticle"></div></lable>
+                                    </div>
+                                    <div class="mb-3">
+                                        <lable class="form-label">Название<input type="text" name="name" class="form-control"></lable>
+                                    </div>
+                                    <div class="mb-3">
+                                        <lable class="form-label">Статус
+                                            <select name="status" class="form-select">
+                                                <option value="available">Доступен</option>
+                                                <option value="unavailable">Не доступен</option>
+                                            </select>
+                                        </lable>
+                                    </div>
+                                    <h4>Атрибуты</h4>
+                                    <div id="attributes">
+                                    </div>
+                                    <button type="button" id="addAttribute" class="btn btn-link">+Добавить атрибут</button>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

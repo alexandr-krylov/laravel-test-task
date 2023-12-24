@@ -25,7 +25,6 @@ class ProductController extends Controller
 
     public function add(ProductRequest $request)
     {
-        //        dd($request);
         $product = new Product();
         $product->article = $request->input('article');
         $product->name = $request->input('name');
