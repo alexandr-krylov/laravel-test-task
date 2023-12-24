@@ -46,6 +46,9 @@
     let showProductTitle = document.getElementById("showProductModalLabel");
     let showProductModal = document.getElementById("showProductModal");
     let showProductArticle = document.getElementById("showArticle");
+    let showProductName = document.getElementById("showName");
+    let showProductStatus = document.getElementById("showStatus");
+    let showProductAttributes = document.getElementById("showAttributes");
     console.log(showProductModal);
     for (let row of productRows) {
         row.addEventListener("click", function () {
@@ -54,12 +57,12 @@
             fetch("product/" + id)
                     .then(response => response.json())
                     .then(result => {
-                        showProductTitle.appendChild(document.createTextNode(result.name));
-//                        console.log(result.id, result.article, showProductTitle);
-                        showProductArticle.appendChild(document.createTextNode(result.article));
-//                        showProductModal.removeAttribute("aria-hidden");
-//                        showProductModal.setAttribute("aria-modal", true);
-//                        showProductModal.setAttribute("role", "dialog");
+                        showProductTitle.innerHTML = result.name;
+                        showProductArticle.innerHTML = result.article;
+                        showProductName.innerHTML = result.name;
+                        showProductStatus.innerHTML = result.status;
+                        console.log(result.data);
+                        showProductAttributes.innerHTML = result.data.join("<br>");
 //                        showProductModal.setAttribute("style", "display: block");
                     });
         });

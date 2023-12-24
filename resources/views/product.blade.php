@@ -114,27 +114,23 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h3 class="modal-title fs-5" id="showProductModalLabel"></h3>
+                                <a class="btn" href="{{ route('deleteProduct', 3) }}"><i class="bi bi-pen"></i></a>
+                                <button type="button" class="btn"><i class="bi bi-trash"></i></button>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                    <div class="mb-3">
-                                        <lable class="form-label">Артикул<div id="showArticle"></div></lable>
-                                    </div>
-                                    <div class="mb-3">
-                                        <lable class="form-label">Название<input type="text" name="name" class="form-control"></lable>
-                                    </div>
-                                    <div class="mb-3">
-                                        <lable class="form-label">Статус
-                                            <select name="status" class="form-select">
-                                                <option value="available">Доступен</option>
-                                                <option value="unavailable">Не доступен</option>
-                                            </select>
-                                        </lable>
-                                    </div>
-                                    <h4>Атрибуты</h4>
-                                    <div id="attributes">
-                                    </div>
-                                    <button type="button" id="addAttribute" class="btn btn-link">+Добавить атрибут</button>
+                                <div class="mb-3">
+                                    <lable class="form-label">Артикул<div id="showArticle"></div></lable>
+                                </div>
+                                <div class="mb-3">
+                                    <lable class="form-label">Название<div id="showName"></div></lable>
+                                </div>
+                                <div class="mb-3">
+                                    <lable class="form-label">Статус<div id="showStatus"></div></lable>
+                                </div>
+                                <div class="mb-3">
+                                    <lable class="form-lable">Статус<div id="showAttributes"></div></lable>
+                                </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

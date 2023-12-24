@@ -44,4 +44,9 @@ class ProductController extends Controller
     {
         return response()->json(Product::find($id));
     }
+
+    public function delete($id)
+    {
+        return $id;
+    }
 }
