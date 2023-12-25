@@ -114,8 +114,8 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h3 class="modal-title fs-5" id="showProductModalLabel"></h3>
-                                <a class="btn" href="{{ route('deleteProduct', 3) }}"><i class="bi bi-pen"></i></a>
-                                <button type="button" class="btn"><i class="bi bi-trash"></i></button>
+                                <button type="button" class="btn" ><i class="bi bi-pen"></i></button>
+                                <button type="button" class="btn" id="deleteProductButton"><i class="bi bi-trash"></i></button>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">

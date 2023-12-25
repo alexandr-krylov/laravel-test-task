@@ -49,11 +49,10 @@
     let showProductName = document.getElementById("showName");
     let showProductStatus = document.getElementById("showStatus");
     let showProductAttributes = document.getElementById("showAttributes");
-    console.log(showProductModal);
+    let deleteProductButton = document.getElementById("deleteProductButton");
     for (let row of productRows) {
         row.addEventListener("click", function () {
             let id = this.getAttribute("data-id")
-            console.log(id);
             fetch("product/" + id)
                     .then(response => response.json())
                     .then(result => {
@@ -61,11 +60,28 @@
                         showProductArticle.innerHTML = result.article;
                         showProductName.innerHTML = result.name;
                         showProductStatus.innerHTML = result.status;
-                        console.log(result.data);
                         showProductAttributes.innerHTML = result.data.join("<br>");
-//                        showProductModal.setAttribute("style", "display: block");
+                        deleteProductButton.setAttribute("data-id", result.id);
                     });
         });
     }
-    console.log(productRows);
+}
+{
+    let deleteProductButton = document.getElementById("deleteProductButton");
+    let CSRFToken = document.getElementsByName("_token")[0].getAttribute("value");
+    deleteProductButton.addEventListener("click", function () {
+        let id = this.getAttribute("data-id");
+        fetch("product", {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': CSRFToken
+            },
+            body: JSON.stringify({id: id})
+        })
+                .then(response => response.json())
+                .then(data => {
+                    location.assign('product');
+                });
+    });
 }

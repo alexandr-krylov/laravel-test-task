@@ -32,7 +32,7 @@ Route::middleware('auth')->group(function () {
         ->name('productAvailable');
     Route::post('/product/add', [ProductController::class, 'add'])->name('addProduct');
     Route::get('/product/{id}', [ProductController::class, 'show'])->name('showProduct');
-    Route::delete('/product/{id}', [ProductController::class, 'delete'])->name('deleteProduct');
+    Route::delete('/product', [ProductController::class, 'delete'])->name('deleteProduct');
 });
 
 require __DIR__.'/auth.php';

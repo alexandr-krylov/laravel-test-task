@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-//use Illuminate\Http\Request;
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -45,8 +45,10 @@ class ProductController extends Controller
         return response()->json(Product::find($id));
     }
 
-    public function delete($id)
+    public function delete(Request $request)
     {
-        return $id;
+        Product::destroy($request->input('id'));
+
+        return response()->json(['deleted' => $request->input('id')]);
     }
 }
