@@ -12,13 +12,17 @@ use Illuminate\Queue\SerializesModels;
 class ProcessNotification implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    
+    protected $product;
+    protected $emailAddress;
 
     /**
      * Create a new job instance.
      */
-    public function __construct()
+    public function __construct($product)
     {
-        //
+        $this->product = $product;
+        $this->emailAddress = config('products.email');
     }
 
     /**
@@ -26,6 +30,6 @@ class ProcessNotification implements ShouldQueue
      */
     public function handle(): void
     {
-        //
+        var_dump($this->product, $this->emailAddress);
     }
 }

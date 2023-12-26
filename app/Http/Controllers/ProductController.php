@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Jobs\ProcessNotification;
 
 class ProductController extends Controller
 {
@@ -36,7 +37,7 @@ class ProductController extends Controller
             )
         );
         $product->save();
-
+        dispatch(new ProcessNotification($product));
         return redirect()->route('product');
     }
 
