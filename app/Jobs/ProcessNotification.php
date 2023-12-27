@@ -8,6 +8,8 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Mail;
+use App\Mail\ProductCreated;
 
 class ProcessNotification implements ShouldQueue
 {
@@ -30,6 +32,7 @@ class ProcessNotification implements ShouldQueue
      */
     public function handle(): void
     {
-        var_dump($this->product, $this->emailAddress);
+        $content = (string)$this->product;
+        Mail::to($this->emailAddress)->send(new ProductCreated($content));
     }
 }
