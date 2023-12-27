@@ -41,7 +41,6 @@
     });
 }
 {
-
     let productRows = document.querySelectorAll("#data [data-id]");
     let showProductTitle = document.getElementById("showProductModalLabel");
     let showProductModal = document.getElementById("showProductModal");
@@ -50,6 +49,7 @@
     let showProductStatus = document.getElementById("showStatus");
     let showProductAttributes = document.getElementById("showAttributes");
     let deleteProductButton = document.getElementById("deleteProductButton");
+    let updateProductButton = document.getElementById("updateModalButton");
     for (let row of productRows) {
         row.addEventListener("click", function () {
             let id = this.getAttribute("data-id")
@@ -62,6 +62,7 @@
                         showProductStatus.innerHTML = result.status;
                         showProductAttributes.innerHTML = result.data.join("<br>");
                         deleteProductButton.setAttribute("data-id", result.id);
+                        updateProductButton.setAttribute("data-id", result.id);
                     });
         });
     }
@@ -82,6 +83,18 @@
                 .then(response => response.json())
                 .then(data => {
                     location.assign('product');
+                });
+    });
+}
+{
+    let updateModalButton = document.getElementById("updateModalButton");
+    let updateProductModalLabel = document.getElementById("updateProductModalLabel");
+    updateModalButton.addEventListener("click", function () {
+        let id = this.getAttribute("data-id");
+        fetch("product/" + id)
+                .then(response => response.json())
+                .then(result => {
+                    updateProductModalLabel.innerHTML = "Редактировать " + result.name;
                 });
     });
 }

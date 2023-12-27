@@ -2,20 +2,20 @@
 
 namespace App\Jobs;
 
+use App\Mail\ProductCreated;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Mail;
-use App\Mail\ProductCreated;
 
 class ProcessNotification implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-    
+
     protected $product;
+
     protected $emailAddress;
 
     /**
@@ -32,7 +32,7 @@ class ProcessNotification implements ShouldQueue
      */
     public function handle(): void
     {
-        $content = (string)$this->product;
+        $content = (string) $this->product;
         Mail::to($this->emailAddress)->send(new ProductCreated($content));
     }
 }

@@ -114,7 +114,10 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h3 class="modal-title fs-5" id="showProductModalLabel"></h3>
-                                <button type="button" class="btn" ><i class="bi bi-pen"></i></button>
+                                <button type="button" class="btn"
+                                        id="updateModalButton"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#updateProductModal"><i class="bi bi-pen"></i></button>
                                 <button type="button" class="btn" id="deleteProductButton"><i class="bi bi-trash"></i></button>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
@@ -135,6 +138,46 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 <button type="button" class="btn btn-primary" id="newProductSubmit">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="updateProductModal" tabindex="-1"
+                     aria-labelledby="updateProductModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title fs-5" id="updateProductModalLabel">Редактировать </h3>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="post" action="{{ route('updateProduct') }}" id="updateProduct">
+                                    @csrf
+                                    @if( $canChangeArticle )
+                                    <div class="mb-3">
+                                        <lable class="form-label">Артикул<input type="text" name="article" class="form-control"></lable>
+                                    </div>
+                                    @endif
+                                    <div class="mb-3">
+                                        <lable class="form-label">Название<input type="text" name="name" class="form-control"></lable>
+                                    </div>
+                                    <div class="mb-3">
+                                        <lable class="form-label">Статус
+                                            <select name="status" class="form-select">
+                                                <option value="available">Доступен</option>
+                                                <option value="unavailable">Не доступен</option>
+                                            </select>
+                                        </lable>
+                                    </div>
+                                    <h4>Атрибуты</h4>
+                                    <div id="attributes">
+                                    </div>
+                                    <button type="button" id="addAttribute" class="btn btn-link">+Добавить атрибут</button>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" id="updateProductSubmit">Save changes</button>
                             </div>
                         </div>
                     </div>

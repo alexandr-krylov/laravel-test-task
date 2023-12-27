@@ -3,15 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
+use App\Jobs\ProcessNotification;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use App\Jobs\ProcessNotification;
+use Illuminate\Support\Facades\Gate;
 
 class ProductController extends Controller
 {
     public function showAll()
     {
-        return view('product', ['products' => Product::all()]);
+        return view(
+            'product',
+            [
+                'products' => Product::all(),
+                'canChangeArticle' => Gate::allows('update-article'),
+            ]
+        );
     }
 
     public function showAllAvailable()
@@ -38,6 +45,7 @@ class ProductController extends Controller
         );
         $product->save();
         dispatch(new ProcessNotification($product));
+
         return redirect()->route('product');
     }
 

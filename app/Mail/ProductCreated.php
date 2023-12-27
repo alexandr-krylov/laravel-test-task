@@ -3,7 +3,6 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
@@ -17,7 +16,7 @@ class ProductCreated extends Mailable
      * Create a new message instance.
      */
     protected $content;
-    
+
     public function __construct($content)
     {
         $this->content = $content;
