@@ -51,12 +51,13 @@
                                 <th>АТРИБУТЫ</th>
                             </tr>
                             @foreach($products as $product)
-                            <tr role="button" data-id="{{ $product->id }}" data-bs-toggle="modal" data-bs-target="#showProductModal">
+                            <tr role="button" data-id="{{ $product->id }}"
+                                data-bs-toggle="modal" data-bs-target="#showProductModal">
                                 <td>{{ $product->article }}</td>
                                 <td>{{ $product->name }}</td>
-                                <td>{{ $product->status }}</td>
+                                <td>{{ $product->status_readable }}</td>
                                 <td>
-                                    @foreach($product->data as $attr)
+                                    @foreach($product->attribute_readable as $attr)
                                     {{ $attr }}<br>
                                     @endforeach
                                 </td>
@@ -170,9 +171,9 @@
                                         </lable>
                                     </div>
                                     <h4>Атрибуты</h4>
-                                    <div id="attributes">
+                                    <div id="updateAttributes">
                                     </div>
-                                    <button type="button" id="addAttribute" class="btn btn-link">+Добавить атрибут</button>
+                                    <button type="button" id="addUpdateAttribute" class="btn btn-link">+Добавить атрибут</button>
                                 </form>
                             </div>
                             <div class="modal-footer">

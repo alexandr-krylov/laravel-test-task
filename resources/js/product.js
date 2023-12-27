@@ -59,8 +59,8 @@
                         showProductTitle.innerHTML = result.name;
                         showProductArticle.innerHTML = result.article;
                         showProductName.innerHTML = result.name;
-                        showProductStatus.innerHTML = result.status;
-                        showProductAttributes.innerHTML = result.data.join("<br>");
+                        showProductStatus.innerHTML = result.status_readable;
+                        showProductAttributes.innerHTML = result.attribute_readable.join("<br>");
                         deleteProductButton.setAttribute("data-id", result.id);
                         updateProductButton.setAttribute("data-id", result.id);
                     });
@@ -89,12 +89,26 @@
 {
     let updateModalButton = document.getElementById("updateModalButton");
     let updateProductModalLabel = document.getElementById("updateProductModalLabel");
+    let updateProductArticle = document.querySelector("#updateProduct [name=article]");
+    let updateProductName = document.querySelector("#updateProduct [name=name]");
+    let updateProductStatus = document.querySelector("#updateProduct [name=status]");
+    let updateProductAttributes = document.getElementById("updateAttributes");
     updateModalButton.addEventListener("click", function () {
         let id = this.getAttribute("data-id");
         fetch("product/" + id)
                 .then(response => response.json())
                 .then(result => {
                     updateProductModalLabel.innerHTML = "Редактировать " + result.name;
+                    if (updateProductArticle) {
+                        updateProductArticle.value = result.article;
+                    }
+                    updateProductName.value = result.name;
+                    updateProductStatus.value = result.status;
+                    console.log(result, JSON.parse(result.data));
+
+                    for (let attribute of JSON.parse(result.data)) {
+                        console.log(attribute);
+                    }
                 });
     });
 }

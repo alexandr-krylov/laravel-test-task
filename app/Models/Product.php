@@ -15,32 +15,42 @@ class Product extends Model
 
     const IS_AVAILABLE = 'available';
 
+    protected $appends = ['status_readable', 'attribute_readable'];
+
     public function scopeAvailable(Builder $query): void
     {
         $query->where('status', self::IS_AVAILABLE);
     }
 
-    protected function status(): Attribute
+    protected function getStatusReadableAttribute()
     {
-        return Attribute::make(
-            get: fn (string $value) => match ($value) {
-                'available' => 'ДОСТУПЕН',
-                'unavailable' => 'НЕ ДОСТУПЕН'
-            }
-        );
+        return match ($this->status) {
+            'available' => 'ДОСТУПЕН',
+            'unavailable' => 'НЕ ДОСТУПЕН'
+        };
     }
 
-    protected function data(): Attribute
-    {
-        return Attribute::make(
-            get: function (string $value) {
-                $result = [];
-                foreach (json_decode($value) as $attrName => $attrValue) {
-                    $result[] = $attrName.': '.$attrValue;
-                }
+    //    protected function data(): Attribute
+    //    {
+    //        return Attribute::make(
+    //                        get: function (string $value) {
+    //                            $result = [];
+    //                            foreach (json_decode($value) as $attrName => $attrValue) {
+    //                                $result[] = $attrName . ': ' . $attrValue;
+    //                            }
+    //
+    //                            return $result;
+    //                        }
+    //        );
+    //    }
 
-                return $result;
-            }
-        );
+    protected function getAttributeReadableAttribute()
+    {
+        $result = [];
+        foreach (json_decode($this->data) as $attrName => $attrValue) {
+            $result[] = $attrName.': '.$attrValue;
+        }
+
+        return $result;
     }
 }

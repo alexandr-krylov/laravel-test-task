@@ -38,9 +38,13 @@ class ProductController extends Controller
         $product->name = $request->input('name');
         $product->status = $request->input('status');
         $product->data = json_encode(
-            array_combine(
-                $request->input('title') ?? [],
-                $request->input('value') ?? []
+            array_filter(
+                array_combine(
+                    $request->input('title') ?? [],
+                    $request->input('value') ?? []
+                ), function ($attr) {
+                    return is_null($attr) ? false : true;
+                }
             )
         );
         $product->save();

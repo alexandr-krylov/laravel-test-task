@@ -7,7 +7,7 @@ return [
         'admin',
         'admin1',
         'vasia',
-        'Alexandr',
+        'Alexandr1',
     ],
     'email' => 'email@mail.com',
 
