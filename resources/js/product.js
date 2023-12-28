@@ -29,8 +29,8 @@
         newAttribute.lastChild.firstChild.addEventListener("click", function () {
             this.closest(".row").remove();
         });
-        let attribtes = document.getElementById("attributes");
-        attribtes.append(newAttribute);
+        let attributes = document.getElementById("attributes");
+        attributes.append(newAttribute);
     });
 }
 {
@@ -93,6 +93,7 @@
     let updateProductName = document.querySelector("#updateProduct [name=name]");
     let updateProductStatus = document.querySelector("#updateProduct [name=status]");
     let updateProductAttributes = document.getElementById("updateAttributes");
+    let updateProductId = document.querySelector("#updateProduct [name=id]");
     updateModalButton.addEventListener("click", function () {
         let id = this.getAttribute("data-id");
         fetch("product/" + id)
@@ -104,11 +105,62 @@
                     }
                     updateProductName.value = result.name;
                     updateProductStatus.value = result.status;
+                    updateProductId.value = result.id;
                     console.log(result, JSON.parse(result.data));
-
-                    for (let attribute of JSON.parse(result.data)) {
-                        console.log(attribute);
+                    let attributes = JSON.parse(result.data);
+                    for (let attribute in attributes) {
+                        console.log(attribute, attributes[attribute]);
+                        let newAttribute = document.createElement("div");
+                        newAttribute.className = "row";
+                        newAttribute.innerHTML = '<div class="col">' +
+                                '<label class="form-label">Название<input type="text"\n\
+                                name="title[]" class="form-control" value="' + attribute + '">' +
+                                '</label>' +
+                                '</div>' +
+                                '<div class="col">' +
+                                '<label class="form-label">Значение<input type="text"\n\
+                                name="value[]" class="form-control" value="' + attributes[attribute] + '">' +
+                                '</label>' +
+                                '</div>' +
+                                '<div class="col">' +
+                                '<button type="button" class="btn mt-4 remove-attribute"><i class="bi bi-trash"></i></button>' +
+                                '</div>';
+                        newAttribute.lastChild.firstChild.addEventListener("click", function () {
+                            this.closest(".row").remove();
+                        });
+                        let attributesBlock = document.getElementById("updateAttributes");
+                        attributesBlock.append(newAttribute);
                     }
                 });
+    });
+}
+{
+    let addAttributeButton = document.getElementById("addUpdateAttribute");
+    addAttributeButton.addEventListener("click", function () {
+        let newAttribute = document.createElement("div");
+        newAttribute.className = "row";
+        newAttribute.innerHTML = '<div class="col">' +
+                '<label class="form-label">Название<input type="text" name="title[]" class="form-control">' +
+                '</label>' +
+                '</div>' +
+                '<div class="col">' +
+                '<label class="form-label">Значение<input type="text" name="value[]" class="form-control">' +
+                '</label>' +
+                '</div>' +
+                '<div class="col">' +
+                '<button type="button" class="btn mt-4 remove-attribute"><i class="bi bi-trash"></i></button>' +
+                '</div>';
+        newAttribute.lastChild.firstChild.addEventListener("click", function () {
+            this.closest(".row").remove();
+        });
+        let attributes = document.getElementById("updateAttributes");
+        attributes.append(newAttribute);
+    });
+}
+{
+    let updateProductForm = document.getElementById("updateProduct");
+    let updateProductSubmitButton = document.getElementById("updateProductSubmit");
+    updateProductSubmitButton.addEventListener("click", function () {
+        updateProductForm.submit();
     });
 }

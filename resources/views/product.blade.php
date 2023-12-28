@@ -154,11 +154,16 @@
                             <div class="modal-body">
                                 <form method="post" action="{{ route('updateProduct') }}" id="updateProduct">
                                     @csrf
-                                    @if( $canChangeArticle )
+                                    <input type="hidden" name="id">
+                                    
                                     <div class="mb-3">
-                                        <lable class="form-label">Артикул<input type="text" name="article" class="form-control"></lable>
-                                    </div>
+                                        <lable class="form-label">Артикул<input type="text" name="article" class="form-control"
+                                    @if( !$canChangeArticle )
+                                    readonly
                                     @endif
+                                    ></lable>
+                                    </div>
+                                    
                                     <div class="mb-3">
                                         <lable class="form-label">Название<input type="text" name="name" class="form-control"></lable>
                                     </div>
