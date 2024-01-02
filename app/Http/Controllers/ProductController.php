@@ -64,6 +64,7 @@ class ProductController extends Controller
 
         return response()->json(['deleted' => $request->input('id')]);
     }
+
     public function update(ProductRequest $request)
     {
         $product = Product::find($request->input('id'));

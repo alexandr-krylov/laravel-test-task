@@ -24,7 +24,8 @@ class ProductRequest extends FormRequest
     {
         return [
             'name' => 'required|min:10',
-            'article' => "required|alpha_num:ascii|unique:App\Models\Product,article",
+            'article' => "required|alpha_num:ascii|unique:App\Models\Product,article".
+            (isset($this->id) ? ','.$this->id : ''),
             'status' => 'in:available,unavailable',
         ];
     }
