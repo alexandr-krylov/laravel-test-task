@@ -33,14 +33,69 @@ ARTICLE — обязательное поле, только латинские �
 Уведомление должно отправляться через задачу (Job) в очереди (Queue).
 Готовое приложение упаковать в docker.
 ## how to install
+### cloning repository
 ```
 git clone https://github.com/alexandr-krylov/laravel-test-task.git
+```
+### install dependences
+```
+
 cd laravel-test-task
 docker run --rm \
     -u "$(id -u):$(id -g)" \
     -v $(pwd):/opt \
     -w /opt \
-    laravelsail/php80-composer:latest \
+    laravelsail/php82-composer:latest \
     composer install --ignore-platform-reqs
+
+```
+### setup .env
+```
+cp .env.example .env
+
+DB_CONNECTION=pgsql
+DB_HOST=pgsql
+DB_PORT=5432
+DB_DATABASE=laravel_test_task
+DB_USERNAME=sail
+DB_PASSWORD=password
+
+QUEUE_CONNECTION=redis
+
+REDIS_HOST=redis
+```
+### start containers
+```
 docker-compose up
 ```
+### generate application key
+```
+docker exec -it laravel-test-task_laravel.test_1 ./artisan key:generate
+```
+### build frontend
+```
+docker exec -it laravel-test-task_laravel.test_1 npm run build
+docker exec -it laravel-test-task_laravel.test_1 npm run dev
+```
+### migrate database
+```
+docker exec -it laravel-test-task_laravel.test_1 ./artisan migrate
+```
+### starting queue
+```
+docker exec -it laravel-test-task_laravel.test_1 ./artisan queue:work
+```
+## How to use
+
+### create user
+http://localhost/register
+
+if username was mentioned in config/products this user can editing article
+
+http://localhost/login
+### operate products
+http://localhost/product
+
+After adding roduct you can see email in http://localhost:8025
+
+
